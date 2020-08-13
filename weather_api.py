@@ -18,20 +18,42 @@ owm = OWM(config.open_weather_id)
 mgr = owm.weather_manager()
 
 def forecast_manual(city_name):
-    observation = mgr.weather_at_place(city_name)
-    w = observation.weather
-    print(observation.to_dict())
-    print(w.weather_icon_url)
-    msg, sticker_id = process_weather_data(observation)
+    try:
+        observation = mgr.weather_at_place(city_name)
+        w = observation.weather
+        print(observation.to_dict())
+        msg, sticker_id = process_weather_data(observation)
+    except Exception as e1:
+        print(str(e1))
+        msg = config.sorry_msg
+        sticker_id = config.dont_know_id
     return(msg, sticker_id)
+    
 
 def forecast_location(latitude, longitude):
     observation = mgr.weather_at_coords(latitude, longitude)
     w = observation.weather
     print(observation.to_dict())
-    print(w.weather_icon_url)
     msg, sticker_id = process_weather_data(observation)
     return(msg, sticker_id)
+
+def predict_message(weather_code):
+    if weather_code:
+        if str(weather_code)[0] == '2' or str(weather_code)[0] == '3' or str(weather_code)[0] == '5':
+            return "Don't forget to take the umbrella!"
+        elif str(weather_code)[0] == '6' or weather_code==903 or weather_code== 906:
+            return "It will be cold, take an advice: wear a coat!"
+        elif str(weather_code)[0] == '7':
+            return "Be careful on the road!"
+        elif weather_code == 800:
+            return "Enjoy this beautiful sunny day!"
+        elif weather_code == 801 or weather_code==802 or weather_code==803 or weather_code==803 or weather_code==804:
+            return "There is a risk for the rain, think about an umbrella!"
+        else:
+            return ""
+
+    else:
+        return config.love_id
 
 def process_weather_data(observation):
     w = observation.weather
@@ -41,12 +63,15 @@ def process_weather_data(observation):
     msg += "\nThe weather conditions at "
     msg += observation.location.name
     msg += " are the following:\n"
-    msg += w.status 
+    msg += "\n"+w.status +"\n"
     msg += "\nCurrent temperature is "
     temp = w.temperature('celsius')["temp"]
     feels_temp = w.temperature('celsius')["feels_like"]
     msg += str(temp) + "°C, and feels like "
     msg += str(feels_temp) + "°C\n"
+    msg += "The wind's speed is "+ str(w.wind()['speed'])+" m/s\n"
+    msg += "The humidity is "+str(w.humidity)+" %\n"
+    msg += predict_message(w.weather_code)+"\n"
     msg += getEmoji(w.weather_code)
     msg += getEmoji(w.weather_code)
     msg += getEmoji(w.weather_code)
@@ -69,7 +94,7 @@ def getEmoji(weather_code):
             return clearSky
         elif weather_code == 801:
             return fewClouds
-        elif weather_code==802 or weather_code==803 or weather_code==803:
+        elif weather_code==802 or weather_code==803 or weather_code==803 or weather_code==804:
             return clouds
         elif weather_code == 904:
             return hot
@@ -93,7 +118,7 @@ def getSticker(weather_code):
             return config.atmosphere_id
         elif weather_code == 800:
             return config.clearSky_id
-        elif weather_code == 801 or weather_code==802 or weather_code==803 or weather_code==803:
+        elif weather_code == 801 or weather_code==802 or weather_code==803 or weather_code==803 or weather_code==804:
             return config.clouds_id
         elif weather_code == 904:
             return config.hot_id

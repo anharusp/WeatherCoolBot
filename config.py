@@ -17,7 +17,11 @@ snowman_id='CAACAgIAAxkBAAIBAAFfNFPnkk-eqJpCJSCEu8sULTkRmwAC9gMAAtJaiAEUWUPrJtRW
 hot_id='CAACAgIAAxkBAAIBAl80VOe67LQaonFfaAWG73oqdfweAAICBAAC0lqIAQIoJ02u67UxGgQ'
 clearSky_id='CAACAgIAAxkBAAIBBl80VZwMtTnmPFmihzbo9S7E9l1gAAI1BAAC0lqIATzMv_fPQR9KGgQ'
 clouds_id='CAACAgIAAxkBAAIBBV80VYXCgdKNwu-7qwABLHfYzybOqwACJAQAAtJaiAGGA7TDrrPgrxoE'
+dont_know_id='CAACAgQAAxkBAAICIl81nDVHa4hO79BTfOAPla9aWPoRAAImAAOHpawOO8Tmd6SraG0aBA'
 
+sorry_msg="Sorry, we are unable to find such city, try one more time!"
+
+START_MSG="Hi! We are glad to see you in WeatherCoolBot!\nFill free to choose the location to know the weather at the moment.\n We also have the following commands:\n /help - to see this message again\n/stop - to stop our conversation\nFill free to try and enjoy!"
 
 class States(Enum):
     S_START = "0"
