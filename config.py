@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from enum import Enum
-
 token = "1234567:ABCxyz"
 db_file = "database.vdb"
 love_id='CAACAgIAAxkBAAMeXzMQo-K-arUyvYgv54WAVn1xrFYAArQAA8D7CAAB-Xb-mWgExwMaBA'
@@ -22,7 +20,3 @@ dont_know_id='CAACAgQAAxkBAAICIl81nDVHa4hO79BTfOAPla9aWPoRAAImAAOHpawOO8Tmd6SraG
 sorry_msg="Sorry, we are unable to find such city, try one more time!"
 
 START_MSG="Hi! We are glad to see you in WeatherCoolBot!\nFill free to choose the location to know the weather at the moment.\n We also have the following commands:\n /help - to see this message again\n/stop - to stop our conversation\nFill free to try and enjoy!"
-
-class States(Enum):
-    S_START = "0"
-    S_ENTER_CITY = "1"

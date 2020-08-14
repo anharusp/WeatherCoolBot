@@ -2,4 +2,3 @@ vedis
 pyowm
 telebot
 requests
-enum
