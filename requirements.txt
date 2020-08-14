@@ -1,4 +1,3 @@
-vedis
-pyowm
+pyowm==3.0.0
 telebot
 requests
