@@ -1,7 +1,5 @@
 vedis
 pyowm
 telebot
-multiprocessing
-schedule
 requests
 enum
