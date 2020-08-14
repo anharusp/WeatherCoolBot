@@ -1,8 +1,6 @@
 vedis
 pyowm
 telebot
-time
-datetime
 multiprocessing
 schedule
 requests
